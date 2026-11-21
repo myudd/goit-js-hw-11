@@ -1,7 +1,19 @@
+// Описаний у документації
 import SimpleLightbox from "simplelightbox";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 
 const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
+const galleryBox = new SimpleLightbox('.gallery a', 
+        {
+            captions: true,
+            captionsData: "alt",
+            captionPosition: 'bottom',
+            captionDelay: 250
+        }
+    );
 export const createGallery = (images) => {
     //Ця функція повинна приймати масив images, створювати HTML-розмітку для галереї, додавати її в контейнер галереї та викликати метод екземпляра SimpleLightbox refresh(). Нічого не повертає.
     const markup = images.map(
@@ -10,7 +22,7 @@ export const createGallery = (images) => {
     <img
       class="gallery-image"
       src="${img.webformatURL}"
-      alt="${img.tags.split(",", 3)}"
+      alt="${img.tags.split(',').slice(0, 3).join(', ')}"
     />
     <ul class="img-details">
         <li class="img-details-item">
@@ -36,14 +48,7 @@ export const createGallery = (images) => {
   )
         .join("");
     gallery.insertAdjacentHTML("afterbegin", markup);
-    const galleryBox = new SimpleLightbox('.gallery a', 
-        {
-            captions: true,
-            captionsData: "alt",
-            captionPosition: 'bottom',
-            captionDelay: 250
-        }
-    );
+    
     galleryBox.refresh(); 
 }
 export const clearGallery = () => {

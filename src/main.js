@@ -4,6 +4,10 @@ import iziToast from "izitoast";
 // Додатковий імпорт стилів
 import "izitoast/dist/css/iziToast.min.css";
 
+import { getImagesByQuery } from './js/pixabay-api.js';
+import {createGallery, clearGallery, showLoader, hideLoader} from './js/render-functions.js';
+
+
 const form = document.querySelector('.form'),
     search = document.querySelector('input[name="search-text"]'); 
 
@@ -23,7 +27,7 @@ form.addEventListener('submit', (event) => {
     clearGallery();
     const data = new FormData(form);
     const req = data.get("search-text");
-    if (search.value.trim() === "" || search.value.trim().length <= 2) {
+    if (search.value.trim() === "") {
         return;
     }
     showLoader();
@@ -36,24 +40,13 @@ form.addEventListener('submit', (event) => {
                 createGallery(images);
             }
             })
-        .catch(error => iziToast.error(getError));
+        .catch(error => iziToast.error(getError))
+        .finally(hideLoader());
     
 })
 
 
 
-
-// Додаткові модулі створюй поруч у src/ і імпортуй їх сюди:
-//   import { something } from './something.js';
-
-import {createGallery, clearGallery, showLoader, hideLoader} from './js/render-functions.js';
-import {getImagesByQuery} from './js/pixabay-api.js';
-import axios from 'axios';
-
 // console.log('Шаблон готовий. Можна писати код 🚀');
-// Описаний у документації
 
 
-import SimpleLightbox from "simplelightbox";
-// Додатковий імпорт стилів
-import "simplelightbox/dist/simple-lightbox.min.css";
