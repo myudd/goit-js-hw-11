@@ -33,7 +33,6 @@ form.addEventListener('submit', (event) => {
     showLoader();
     getImagesByQuery(req)
         .then((images) => {
-            hideLoader();
             if (images.length === 0) {
                 iziToast.error(getError);
             } else {
@@ -41,7 +40,7 @@ form.addEventListener('submit', (event) => {
             }
             })
         .catch(error => iziToast.error(getError))
-        .finally(hideLoader());
+        .finally(hideLoader);
     
 })
 
