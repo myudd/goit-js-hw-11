@@ -17,6 +17,7 @@ const getError = {
     iconUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgoJPHBhdGggZD0iTTAgMGgxNnYxNkgweiIgZmlsbD0ibm9uZSIgLz4KCTxnIGZpbGw9IiNmZmYiPgoJCTxwYXRoIGQ9Ik00LjU0LjE0NkEuNS41IDAgMCAxIDQuODkzIDBoNi4yMTRhLjUuNSAwIDAgMSAuMzUzLjE0Nmw0LjM5NCA0LjM5NGEuNS41IDAgMCAxIC4xNDYuMzUzdjYuMjE0YS41LjUgMCAwIDEtLjE0Ni4zNTNsLTQuMzk0IDQuMzk0YS41LjUgMCAwIDEtLjM1My4xNDZINC44OTNhLjUuNSAwIDAgMS0uMzUzLS4xNDZMLjE0NiAxMS40NkEuNS41IDAgMCAxIDAgMTEuMTA3VjQuODkzYS41LjUgMCAwIDEgLjE0Ni0uMzUzek01LjEgMUwxIDUuMXY1LjhMNS4xIDE1aDUuOGw0LjEtNC4xVjUuMUwxMC45IDF6IiAvPgoJCTxwYXRoIGQ9Ik00LjY0NiA0LjY0NmEuNS41IDAgMCAxIC43MDggMEw4IDcuMjkzbDIuNjQ2LTIuNjQ3YS41LjUgMCAwIDEgLjcwOC43MDhMOC43MDcgOGwyLjY0NyAyLjY0NmEuNS41IDAgMCAxLS43MDguNzA4TDggOC43MDdsLTIuNjQ2IDIuNjQ3YS41LjUgMCAwIDEtLjcwOC0uNzA4TDcuMjkzIDhMNC42NDYgNS4zNTRhLjUuNSAwIDAgMSAwLS43MDgiIC8+Cgk8L2c+Cjwvc3ZnPgo=',
     class: 'iziError',
 };
+hideLoader();
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     clearGallery();
@@ -26,8 +27,7 @@ form.addEventListener('submit', (event) => {
         return;
     }
     showLoader();
-    setTimeout(() => {
-        getImagesByQuery(req)
+    getImagesByQuery(req)
         .then((images) => {
             hideLoader();
             if (images.length === 0) {
@@ -36,10 +36,7 @@ form.addEventListener('submit', (event) => {
                 createGallery(images);
             }
             })
-            .catch(error => iziToast.error(getError));
-        }, 2000)
-    
-    
+        .catch(error => iziToast.error(getError));
     
 })
 

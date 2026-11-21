@@ -115,7 +115,9 @@ button[type="submit"]{
   margin: 0;
   line-height: 2;
 }
-
+.load.loader {
+  display: block;
+}
 .loader {
   --color-1: #2e2f42;
   --color-2: #ff3d00;
@@ -124,8 +126,9 @@ button[type="submit"]{
   position: relative;
   font-size: calc(16 * var(--size));
   letter-spacing: calc(2 * var(--size));
-  margin: 0 auto;
-  width: fit-content;
+  margin: 72px auto;
+  text-align: center;
+  display: none;
 }
 
 .loader:before {

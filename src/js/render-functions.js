@@ -1,6 +1,7 @@
 import SimpleLightbox from "simplelightbox";
 
 const gallery = document.querySelector('.gallery');
+const loader = document.querySelector('.loader');
 export const createGallery = (images) => {
     //Ця функція повинна приймати масив images, створювати HTML-розмітку для галереї, додавати її в контейнер галереї та викликати метод екземпляра SimpleLightbox refresh(). Нічого не повертає.
     const markup = images.map(
@@ -50,9 +51,9 @@ export const clearGallery = () => {
 }
 
 export const showLoader = () => {
-    gallery.classList.add('loader');    
+    loader.classList.add('load');    
 }
 
 export const hideLoader = () => {
-    gallery.classList.remove('loader');  
+    loader.classList.remove('load');  
 }
